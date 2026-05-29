@@ -1,26 +1,270 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ember-red: #800020;              /* dark wine — bg fills, structural borders */
+  --ember-text: #C8352A;             /* vivid crimson — text accent, 5.2:1 on light bg */
+  --ember-deep: oklch(26% 0.115 12); /* pressed/hover state for ember-red fills */
+  --acid-green: var(--ember-text);   /* category label text */
+
+  /* Light theme surfaces */
+  --bar-black: oklch(96% 0.004 15);      /* warm off-white — main background */
+  --surface-raised: oklch(90% 0.005 15); /* elevated panels, nav */
+  --surface-border: oklch(76% 0.009 15); /* visible border on light */
+  --warm-white: oklch(9% 0.005 15);      /* near-black — primary text */
+  --ash: oklch(28% 0.007 15);            /* medium-dark gray — secondary text on light, ~9:1 */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-ember-red: var(--ember-red);
+  --color-ember-text: var(--ember-text);
+  --color-ember-deep: var(--ember-deep);
+  --color-acid-green: var(--acid-green);
+  --color-bar-black: var(--bar-black);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-border: var(--surface-border);
+  --color-warm-white: var(--warm-white);
+  --color-ash: var(--ash);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: var(--font-big-shoulders);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bar-black);
+  color: var(--warm-white);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+@layer base {
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px oklch(42% 0.12 12 / 0.55);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee-scroll 55s linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Image strip — horizontal scrolling visual bar */
+.image-strip-track {
+  display: flex;
+  flex-shrink: 0;
+  animation: marquee-scroll 48s linear infinite;
+}
+
+.image-strip-container:hover .image-strip-track {
+  animation-play-state: paused;
+}
+
+/* Scroll-driven section reveals */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-up 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 28%;
+  }
+  .reveal-d1 {
+    animation-delay: 80ms;
+  }
+  .reveal-d2 {
+    animation-delay: 160ms;
+  }
+  .reveal-d3 {
+    animation-delay: 240ms;
+  }
+}
+
+/* Cross-document View Transitions — Chrome 126+ / Safari 18+ */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: 200ms cubic-bezier(0.16, 1, 0.3, 1) both page-exit;
+}
+
+::view-transition-new(root) {
+  animation: 320ms cubic-bezier(0.16, 1, 0.3, 1) both page-enter;
+}
+
+@keyframes page-exit {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Custom cursor — acid-green ring, always visible on any background */
+.cursor-dot {
+  position: fixed;
+  top: -6px;
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  background: transparent;
+  border: 1.5px solid var(--acid-green);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition:
+    width 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    height 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    top 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    left 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-dot.cursor-large {
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  left: -20px;
+  background: oklch(42% 0.12 12 / 0.12);
+}
+
+@media (pointer: coarse) {
+  .cursor-dot {
+    display: none;
+  }
+}
+
+/* Dark-section context restores
+   Sections with dark bg need light text vars — CSS custom props cascade to children */
+.bg-ember-red,
+.hover\:bg-ember-red:hover {
+  --warm-white: oklch(95% 0.004 15);
+  --ash: oklch(72% 0.005 15);
+  --surface-border: oklch(95% 0.004 15 / 0.2);
+}
+
+/* Film grain texture overlay — adds material presence to dark sections */
+.grain {
+  position: relative;
+  isolation: isolate;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Editorial type utilities ──────────────────────────────────────────────── */
+
+/* Hollow outlined type — editorial display use only */
+.text-outline {
+  -webkit-text-stroke: 1.5px var(--warm-white);
+  color: transparent;
+}
+
+/* Sideways / rotated label — freestyle axis accent */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--ember-red);
+    color: oklch(95% 0.004 15); /* near-white on wine-red */
+    padding: 14px 40px;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--ember-deep);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    color: var(--warm-white);
+    padding: 14px 40px;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--surface-border);
+    cursor: pointer;
+    transition:
+      background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+  }
+
+  .btn-ghost:hover {
+    background-color: var(--surface-raised);
+    border-color: var(--warm-white);
+  }
 }

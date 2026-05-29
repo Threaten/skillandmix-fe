@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-02T00:00:00.000Z",
+  "title": "Design System: Skill & Mix",
+  "extensions": {
+    "colorMeta": {
+      "ember-red": {
+        "role": "primary",
+        "displayName": "Ember Red",
+        "canonical": "oklch(52% 0.22 27)",
+        "tonalRamp": [
+          "oklch(38% 0.19 27)",
+          "oklch(52% 0.22 27)",
+          "oklch(65% 0.21 27)"
+        ]
+      },
+      "ember-deep": {
+        "role": "primary",
+        "displayName": "Ember Deep",
+        "canonical": "oklch(38% 0.19 27)",
+        "tonalRamp": [
+          "oklch(28% 0.16 27)",
+          "oklch(38% 0.19 27)",
+          "oklch(48% 0.21 27)"
+        ]
+      },
+      "bar-black": {
+        "role": "neutral",
+        "displayName": "Bar Black",
+        "canonical": "oklch(9% 0.006 27)",
+        "tonalRamp": [
+          "oklch(7% 0.005 27)",
+          "oklch(9% 0.006 27)",
+          "oklch(11% 0.007 27)"
+        ]
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Surface Raised",
+        "canonical": "oklch(13% 0.008 27)",
+        "tonalRamp": [
+          "oklch(11% 0.007 27)",
+          "oklch(13% 0.008 27)",
+          "oklch(16% 0.009 27)"
+        ]
+      },
+      "surface-border": {
+        "role": "neutral",
+        "displayName": "Surface Border",
+        "canonical": "oklch(19% 0.009 27)",
+        "tonalRamp": [
+          "oklch(16% 0.008 27)",
+          "oklch(19% 0.009 27)",
+          "oklch(24% 0.01 27)"
+        ]
+      },
+      "warm-white": {
+        "role": "neutral",
+        "displayName": "Warm White",
+        "canonical": "oklch(93% 0.006 27)",
+        "tonalRamp": [
+          "oklch(80% 0.007 27)",
+          "oklch(86% 0.007 27)",
+          "oklch(93% 0.006 27)"
+        ]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Ash",
+        "canonical": "oklch(72% 0.007 27)",
+        "tonalRamp": [
+          "oklch(60% 0.007 27)",
+          "oklch(72% 0.007 27)",
+          "oklch(82% 0.007 27)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero section headings only. Maximum 5-7 words. Set tight — negative tracking and sub-1.0 leading is the instruction."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings, page titles, course card titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sub-section labels, feature callouts, nav items."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prose, descriptions, blog copy. Cap at 65-72ch line length."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Category tags, pricing, course duration, form labels. Always uppercase monospace."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ember-glow",
+        "value": "0 0 0 3px oklch(52% 0.22 27 / 0.35)",
+        "purpose": "Focus ring on all focusable interactive elements. Replaces browser default outline. Not decorative."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 8px 32px oklch(9% 0.006 27 / 0.7)",
+        "purpose": "On card hover only. State signal — reinforces interactive affordance. Never applied at rest."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing for all interactive state transitions (hover, focus). Ease-out-expo. Confident and deliberate."
+      },
+      {
+        "name": "duration-fast",
+        "value": "180ms",
+        "purpose": "Micro-interactions: focus rings, button color transitions."
+      },
+      {
+        "name": "duration-standard",
+        "value": "280ms",
+        "purpose": "Standard UI state changes: hover, active, nav transitions."
+      },
+      {
+        "name": "duration-reveal",
+        "value": "500ms",
+        "purpose": "Page-level reveals, section entry animations."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "description": "Small: mobile-landscape and up"
+      },
+      {
+        "name": "md",
+        "value": "768px",
+        "description": "Medium: tablet portrait and up"
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "description": "Large: tablet landscape and up"
+      },
+      { "name": "xl", "value": "1280px", "description": "XL: desktop and up" },
+      { "name": "2xl", "value": "1536px", "description": "2XL: wide desktop" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The primary call-to-action. Rectangular, Ember Red, uppercase monospace label.",
+      "html": "<button class=\"ds-btn-primary\">ENROLL NOW</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; background-color: #C8352A; color: #F0E8E7; padding: 14px 40px; border: none; border-radius: 0; font-family: 'Geist Mono', monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background-color 280ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { background-color: #8B2019; } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px oklch(52% 0.22 27 / 0.35); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action. Transparent with a hairline border. Same rectangular shape.",
+      "html": "<button class=\"ds-btn-ghost\">VIEW COURSES</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; background-color: transparent; color: #F0E8E7; padding: 14px 40px; border: 1px solid #2E1A18; border-radius: 0; font-family: 'Geist Mono', monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background-color 280ms cubic-bezier(0.16, 1, 0.3, 1), border-color 280ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ghost:hover { background-color: #1F1311; border-color: #F0E8E7; } .ds-btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px oklch(52% 0.22 27 / 0.35); }"
+    },
+    {
+      "name": "Course Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Displays a single course: image, category label, title, duration, CTA.",
+      "html": "<article class=\"ds-course-card\"><div class=\"ds-course-card__image\"></div><div class=\"ds-course-card__body\"><span class=\"ds-course-card__label\">INTERMEDIATE · 8 WEEKS</span><h3 class=\"ds-course-card__title\">Classic Cocktail Fundamentals</h3><p class=\"ds-course-card__desc\">Master the canon — sours, stirred drinks, highballs — with technique-first instruction from working bartenders.</p><a href=\"#\" class=\"ds-btn-ghost\">VIEW COURSE</a></div></article>",
+      "css": ".ds-course-card { background-color: #1F1311; border: 1px solid #2E1A18; border-radius: 3px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-course-card:hover { box-shadow: 0 8px 32px oklch(9% 0.006 27 / 0.7); } .ds-course-card__image { width: 100%; aspect-ratio: 16/9; background-color: #2E1A18; } .ds-course-card__body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; } .ds-course-card__label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #C8352A; } .ds-course-card__title { font-family: Fraunces, Georgia, serif; font-size: 1.5rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.015em; color: #F0E8E7; margin: 0; } .ds-course-card__desc { font-family: Geist, system-ui, sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.65; color: #B5ACAC; margin: 0; max-width: 65ch; } .ds-course-card .ds-btn-ghost { align-self: flex-start; margin-top: auto; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": null,
+      "description": "Standard single-line input for the contact form. Dark-surfaced, Ember Glow on focus.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field__label\" for=\"name\">YOUR NAME</label><input class=\"ds-field__input\" id=\"name\" type=\"text\" placeholder=\"Jane Nguyen\" /></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 8px; } .ds-field__label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #B5ACAC; } .ds-field__input { background-color: #1F1311; color: #F0E8E7; border: 1px solid #2E1A18; border-radius: 0; padding: 14px 16px; font-family: Geist, system-ui, sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.5; width: 100%; box-sizing: border-box; outline: none; transition: box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-field__input::placeholder { color: #B5ACAC; } .ds-field__input:focus { box-shadow: 0 0 0 3px oklch(52% 0.22 27 / 0.35); } .ds-field__input[aria-invalid='true'] { border-color: #C8352A; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Primary site navigation. Surface Raised background, Ember Red active underline, rectangular CTA.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a class=\"ds-nav__brand\" href=\"/\">SKILL &amp; MIX</a><ul class=\"ds-nav__links\" role=\"list\"><li><a class=\"ds-nav__link\" href=\"/courses\">Courses</a></li><li><a class=\"ds-nav__link ds-nav__link--active\" href=\"/\" aria-current=\"page\">Home</a></li><li><a class=\"ds-nav__link\" href=\"/blog\">Blog</a></li><li><a class=\"ds-nav__link\" href=\"/contact\">Contact</a></li></ul><a class=\"ds-btn-primary\" href=\"/courses\">ENROLL NOW</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; background-color: #1F1311; height: 64px; padding: 0 40px; border-bottom: 1px solid #2E1A18; } .ds-nav__brand { font-family: 'Geist Mono', monospace; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.12em; color: #F0E8E7; text-decoration: none; text-transform: uppercase; } .ds-nav__links { display: flex; align-items: center; gap: 40px; list-style: none; margin: 0; padding: 0; } .ds-nav__link { font-family: Geist, system-ui, sans-serif; font-size: 1rem; font-weight: 600; line-height: 1.3; color: #F0E8E7; text-decoration: none; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: border-color 180ms cubic-bezier(0.16, 1, 0.3, 1), color 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav__link:hover { color: #F0E8E7; border-bottom-color: #2E1A18; } .ds-nav__link--active { border-bottom-color: #C8352A; } .ds-nav .ds-btn-primary { font-size: 0.7rem; padding: 10px 24px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Bar at Last Call",
+    "overview": "The design system is the interior of a serious cocktail bar — not a hotel bar, not a chain, not a pop-up activation. The surface is dark, architecturally spare, lit from the material itself. The background is predominantly near-black with a trace of ember in the tint. Red appears with total precision: on calls to action, structural highlights, and moments that demand to announce themselves. Everything else recedes.\n\nTypographically, display headings carry visual mass through a variable serif. Body copy runs in a clean geometric sans that vanishes behind the words. Metadata and labels are rendered in monospace, telegraphing the technical discipline of a practiced bartender's annotated recipe card.\n\nThis system explicitly rejects: the course-platform aesthetic (soft blue, thumbnail-grid soup); the corporate hospitality look (beige-white, hotel brochure warmth); and the over-minimized cocktail-app design (pure white background, hairline type, mistaken for skincare).",
+    "keyCharacteristics": [
+      "Surface-first darkness: the background is not a canvas — it is the design.",
+      "Red as a loaded, precise instrument: its rarity is its power.",
+      "Typographic authority: a display serif with visual mass paired with invisible body type.",
+      "Monospaced labels and metadata: technical craft made visible.",
+      "Confident stillness: every element feels placed, not arranged."
+    ],
+    "rules": [
+      {
+        "name": "The Ember Reserve Rule",
+        "body": "Ember Red appears on ≤15% of any given screen. Every use is structural or interactive. Decorative red — tinted washes, background fills, gradients — is not permitted.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hierarchy Contract",
+        "body": "Each typographic level appears in one role only. Do not set body copy at Title size for emphasis — use weight contrast within the body role, or elevate structurally to Headline.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tight-Display Rule",
+        "body": "Display headlines are set with negative tracking and leading below 1.0. This is not a default override — it is the typographic instruction.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tonal-First Rule",
+        "body": "Distinguish surfaces through background lightness steps, not box shadows. Reach for shadow only as a state signal (hover, focus).",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use Bar Black (#130D0C) as the default background. Dark tonal layering is the vocabulary.",
+      "Do treat Ember Red as the only accent. One loaded signal. Use it on CTAs, active states, and structural highlights only.",
+      "Do set Fraunces at Display weight with tight leading (0.92) and negative tracking (−0.02em). The headline should take up space.",
+      "Do write all metadata, pricing, category tags, and form labels in Geist Mono uppercase.",
+      "Do use 280ms cubic-bezier(0.16, 1, 0.3, 1) (ease-out-expo) for interactive state transitions.",
+      "Do distinguish surfaces through lightness steps (Bar Black → Surface Raised), not box shadows."
+    ],
+    "donts": [
+      "Don't replicate generic course platform aesthetics — soft blue, grid of identical thumbnail cards, neutral sans-serif margin to margin.",
+      "Don't use the corporate hospitality look: beige-white backgrounds, hotel brochure warmth, muted palettes.",
+      "Don't design like an over-minimized cocktail app — pure white background, hairline type, maximum whitespace that reads as skincare.",
+      "Don't use gradient text (background-clip: text with a gradient). Ember Red is a solid.",
+      "Don't use a left-border stripe accent on cards or callout boxes. Use a top border, full border, or background tint instead.",
+      "Don't use pure black (#000) or pure white (#fff) on any surface. Every neutral is tinted toward the brand hue.",
+      "Don't use bounce, spring, or elastic easing. Motion is choreographed, not animated.",
+      "Don't use neon or outer glow effects as ambient decoration. The Ember Glow is a focus ring, not an atmosphere."
+    ]
+  }
+}
